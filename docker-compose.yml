@@ -15,7 +15,6 @@ services:
   graylog:
     env_file: .graylog.env
     image: graylog2/server:2.0.0-1
-    environment:
     depends_on:
       - mongo
       - elasticsearch
