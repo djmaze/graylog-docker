@@ -1,0 +1,18 @@
+#!/bin/bash
+set -euo pipefail
+
+if [ ! -e ./config ]; then
+  echo "Getting default configuration"
+  mkdir -p ./config
+  curl --silent -o ./config/graylog.conf https://raw.githubusercontent.com/Graylog2/graylog2-images/2.0/docker/config/graylog.conf
+  curl --silent -o ./config/log4j2.xml https://github.com/Graylog2/graylog2-images/raw/2.0/docker/config/log4j2.xml
+
+  echo "Generating node id"
+  uuidgen > ./config/node-id
+
+  echo "Creating journal directory for graylog user"
+  mkdir -p ./data/journal
+  sudo chown 1100 ./data/journal
+else
+  echo "Config already exists."
+fi
