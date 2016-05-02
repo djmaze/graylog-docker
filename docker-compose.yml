@@ -21,6 +21,10 @@ services:
     ports:
       - "9000:9000"
       - "12900:12900"
+      - "514:514/tcp"
+      - "514:514/udp"
+      - "12201:12201/tcp"
+      - "12201:12201/udp"
     volumes:
       - ./data/journal:/usr/share/graylog/data/journal
       - ./config:/usr/share/graylog/data/config
