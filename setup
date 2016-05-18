@@ -1,18 +1,26 @@
 #!/bin/bash
 set -euo pipefail
 
-if [ ! -e ./config ]; then
+declare DATA_DIR="./.data"
+declare CONFIG_DIR="$DATA_DIR/config"
+
+if [ ! -e "$CONFIG_DIR" ]; then
   echo "Getting default configuration"
-  mkdir -p ./config
-  curl --silent -o ./config/graylog.conf https://raw.githubusercontent.com/Graylog2/graylog2-images/2.0/docker/config/graylog.conf
-  curl --silent -o ./config/log4j2.xml https://github.com/Graylog2/graylog2-images/raw/2.0/docker/config/log4j2.xml
+  mkdir -p "$CONFIG_DIR"
+  curl --silent -o "$CONFIG_DIR/graylog.conf" https://raw.githubusercontent.com/Graylog2/graylog2-images/2.0/docker/config/graylog.conf
+  curl --silent -o "$CONFIG_DIR/log4j2.xml" https://github.com/Graylog2/graylog2-images/raw/2.0/docker/config/log4j2.xml
 
   echo "Generating node id"
-  uuidgen > ./config/node-id
+  uuidgen > "$CONFIG_DIR/node-id"
 
   echo "Creating journal directory for graylog user"
-  mkdir -p ./data/journal
-  sudo chown 1100 ./data/journal
+  mkdir -p "$DATA_DIR/journal"
+  sudo chown 1100 "$DATA_DIR/journal"
+
+  echo "Setup done. Now edit the .* files."
+  echo
+  echo "Put the needed certificates into the .certs directory."
+  echo "They will be available at /var/opt/graylog/data/certs from within the graylog container."
 else
-  echo "Config already exists."
+  echo "Config already exists. Aborting."
 fi

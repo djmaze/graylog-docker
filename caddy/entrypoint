@@ -1,0 +1,7 @@
+#!/bin/sh
+set -euo pipefail
+
+sed -i "s/{{VIRTUAL_HOST}}/${VIRTUAL_HOST}/g" /etc/caddy/Caddyfile
+sed -i "s/{{LETSENCRYPT_EMAIL}}/${LETSENCRYPT_EMAIL}/g" /etc/caddy/Caddyfile
+
+exec caddy -conf /etc/caddy/Caddyfile $*
