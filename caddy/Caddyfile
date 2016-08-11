@@ -1,9 +1,11 @@
 {{VIRTUAL_HOST}}:443 {
   proxy / graylog:9000
   tls {{LETSENCRYPT_EMAIL}}
+  gzip
 }
 
 {{VIRTUAL_HOST}}:12900 {
   proxy / graylog:12900
   tls {{LETSENCRYPT_EMAIL}}
+  gzip
 }
