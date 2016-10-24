@@ -16,7 +16,7 @@ services:
     env_file: .env
     environment:
       GRAYLOG_REST_TRANSPORT_URI: "https://${VIRTUAL_HOST}:12900"
-    image: graylog2/server:2.0.3-2
+    image: graylog2/server:2.1.1-1
     depends_on:
       - mongo
       - elasticsearch

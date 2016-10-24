@@ -3,12 +3,13 @@ set -euo pipefail
 
 declare DATA_DIR="./.data"
 declare CONFIG_DIR="$DATA_DIR/config"
+declare GRAYLOG_VERSION="2.1"
 
 if [ ! -e "$CONFIG_DIR" ]; then
   echo "Getting default configuration"
   mkdir -p "$CONFIG_DIR"
-  curl --silent -o "$CONFIG_DIR/graylog.conf" https://raw.githubusercontent.com/Graylog2/graylog2-images/2.0/docker/config/graylog.conf
-  curl --silent -o "$CONFIG_DIR/log4j2.xml" https://github.com/Graylog2/graylog2-images/raw/2.0/docker/config/log4j2.xml
+  curl --silent -o "$CONFIG_DIR/graylog.conf" "https://raw.githubusercontent.com/Graylog2/graylog2-images/${GRAYLOG_VERSION}/docker/config/graylog.conf"
+  curl --silent -o "$CONFIG_DIR/log4j2.xml" "https://github.com/Graylog2/graylog2-images/raw/${GRAYLOG_VERSION}/docker/config/log4j2.xml"
 
   echo "Generating node id"
   uuidgen > "$CONFIG_DIR/node-id"
