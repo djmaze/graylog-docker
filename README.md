@@ -15,6 +15,8 @@ Make sure to fill in the needed variables in the `.env` file:
 * `LETSENCRYPT_EMAIL`: Your email address at Let's Encrypt. Needed for registering an SSL certificate
 * `GRAYLOG_PASSWORD_SECRET`: Pepper for passwords, at least 64 characters. Generate e.g. with `pwgen -N 1 -s 96`
 * `GRAYLOG_ROOT_PASSWORD_SHA2`: Initial password the `admin` user. Generate with `echo -n yourpassword | shasum -a 256`
+* `MYHOSTNAME`: Hostname to use for outgoing mails
+
 
 ### Running
 
