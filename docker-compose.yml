@@ -41,3 +41,7 @@ services:
       - "12900:12900"
     volumes:
       - .data/caddy:/root/.caddy
+
+  postfix:
+    build: postfix
+    env_file: .env
